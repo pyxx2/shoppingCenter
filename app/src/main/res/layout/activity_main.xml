@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="手机淘啵"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:background="#FF4500"
+        android:layout_gravity="center"
+        android:textSize="45dp"/>
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center"
+        android:layout_height="250dp"
+        android:src="@drawable/touxiang" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="啵啵！欢迎您！"
+        android:textSize="25dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textColor="#ffA500"/>
+
+    <Button
+        android:id="@+id/shopping"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:text="开始购物"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/round_corner"
+        android:textColor="#ffffff"
+        android:textSize="30dp"/>
+</LinearLayout>
