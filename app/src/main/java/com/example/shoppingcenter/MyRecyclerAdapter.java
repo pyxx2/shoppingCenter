@@ -27,6 +27,16 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItem= layoutInflater.inflate(R.layout.list_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
+
+
+//        viewHolder.imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int position = viewHolder.getAdapterPosition();
+//                final ItemData itemData = listdata[position];
+//                Toast.makeText(view.getContext(),"Click: "+ itemData.getDescription(),Toast.LENGTH_SHORT).show();
+//            }
+//        });
         return viewHolder;
     }
 
@@ -35,10 +45,12 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         final ItemData itemData = listdata[position];
         holder.textView.setText(itemData.getDescription());
         holder.imageView.setImageResource(itemData.getImgId());
-        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+        holder.price.setText(String.valueOf(itemData.getPrice()));
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),"Click: "+ itemData.getDescription(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(),"Click: "+ itemData.getPrice(),Toast.LENGTH_SHORT).show();
+
             }
         });
     }
@@ -51,12 +63,14 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
         public TextView textView;
+        public TextView price;
         public RelativeLayout relativeLayout;
         public ViewHolder(View itemView) {
             super(itemView);
             this.imageView = (ImageView) itemView.findViewById(R.id.imageView);
             this.textView = (TextView) itemView.findViewById(R.id.textView);
             this.relativeLayout = (RelativeLayout)itemView.findViewById(R.id.relativeLayout);
+            this.price=(TextView) itemView.findViewById(R.id.price);
         }
 
 

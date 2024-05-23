@@ -4,25 +4,39 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class goods extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods);
+
+        Button button = (Button)findViewById(R.id.goorder);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(goods.this,OrderSuccess.class);
+                startActivity(intent);
+            }
+        });
+
         ItemData[] itemData = new ItemData[] {
-                new ItemData("苹果", R.drawable.p1),
-                new ItemData("香蕉", R.drawable.p2),
-                new ItemData("草莓", R.drawable.p3),
-                new ItemData("草莓", R.drawable.p4),
-                new ItemData("橙子", R.drawable.p5),
-                new ItemData("西瓜", R.drawable.p6),
-                new ItemData("菠萝", R.drawable.p7),
-                new ItemData("蓝莓", R.drawable.p8),
-                new ItemData("iphone15", R.drawable.p9),
-                new ItemData("联想小新", R.drawable.p10),
-                new ItemData("联想拯救者", R.drawable.p11),
+                new ItemData("苹果", R.drawable.p1,1f),
+                new ItemData("香蕉", R.drawable.p2,3.8f),
+                new ItemData("草莓", R.drawable.p3,8.9f),
+                new ItemData("草莓", R.drawable.p4,7.8f),
+                new ItemData("橙子", R.drawable.p5,45f),
+                new ItemData("西瓜", R.drawable.p6,34f),
+                new ItemData("菠萝", R.drawable.p7,6.7f),
+                new ItemData("蓝莓", R.drawable.p8,0.9f),
+                new ItemData("iphone15", R.drawable.p9,12345f),
+                new ItemData("联想小新", R.drawable.p10,5678f),
+                new ItemData("联想拯救者", R.drawable.p11,11000f),
         };
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         MyRecyclerAdapter adapter = new MyRecyclerAdapter(itemData);

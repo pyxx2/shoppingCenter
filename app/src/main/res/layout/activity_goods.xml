@@ -25,6 +25,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#ff0000"
+            android:textSize="30dp"
+            android:text="合计：" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -36,7 +45,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/goorder"
             android:layout_width="30dp"
             android:layout_height="46dp"
             android:layout_marginLeft="50dp"
@@ -47,7 +56,7 @@
             android:textSize="15dp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/gocart"
             android:layout_width="30dp"
             android:layout_height="46dp"
             android:layout_marginRight="50dp"
