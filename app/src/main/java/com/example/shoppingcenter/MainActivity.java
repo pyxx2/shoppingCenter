@@ -13,13 +13,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button button = (Button)findViewById(R.id.shopping);
+        Button button = (Button)findViewById(R.id.register);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this,goods.class);
+                intent.setClass(MainActivity.this,Register.class);
                 startActivity(intent);
+            }
+        });
+        Button button2 = (Button)findViewById(R.id.login);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
