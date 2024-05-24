@@ -1,7 +1,7 @@
 package com.example.shoppingcenter;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.os.Bundle;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder> {
+public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder>  {
 
     private ItemData[] listdata;
     public MyRecyclerAdapter(ItemData[] listdata) {
@@ -34,14 +34,19 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 //            public void onClick(View view) {
 //                int position = viewHolder.getAdapterPosition();
 //                final ItemData itemData = listdata[position];
-//                Toast.makeText(view.getContext(),"Click: "+ itemData.getDescription(),Toast.LENGTH_SHORT).show();
+//                //Toast.makeText(view.getContext(),"Click: "+ itemData.getDescription(),Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(MyRecyclerAdapter.this,goods.class);
+//////将数据发送到intent中
+//                intent.putExtra("price",price);
+//                startActivityForResult(intent, REQUEST_CODE);
 //            }
 //        });
         return viewHolder;
     }
-
+    private static final int REQUEST_CODE = 1;
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         final ItemData itemData = listdata[position];
         holder.textView.setText(itemData.getDescription());
         holder.imageView.setImageResource(itemData.getImgId());
@@ -49,8 +54,14 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),"Click: "+ itemData.getPrice(),Toast.LENGTH_SHORT).show();
-
+                //Toast.makeText(view.getContext(),"Click: "+ itemData.getPrice(),Toast.LENGTH_SHORT).show();
+                final float price=itemData.getPrice();
+                Log.i(TAG, "onClick: "+price);
+                Intent intent = new Intent(view.getContext(),goods.class);
+                //将数据发送到intent中
+                intent.putExtra("price",price);
+                //打开新窗口
+                view.getContext().startActivity(intent);
             }
         });
     }

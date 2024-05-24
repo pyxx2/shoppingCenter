@@ -1,15 +1,21 @@
 package com.example.shoppingcenter;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class goods extends AppCompatActivity {
+    Float sumprice=0f;
+    Float nowprice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,5 +48,31 @@ public class goods extends AppCompatActivity {
         MyRecyclerAdapter adapter = new MyRecyclerAdapter(itemData);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+        Intent intent=getIntent();
+        Log.i(TAG, "onCreate: "+intent.getFloatExtra("price",0f));
+        nowprice=intent.getFloatExtra("price",0f);
+        if (null != savedInstanceState) {
+            sumprice = savedInstanceState.getFloat("price1");
+            sumprice=sumprice+nowprice;
+            Log.i(TAG, "sumprice: "+sumprice);
+            TextView sum=findViewById(R.id.textView4);
+            sum.setText("合计："+sumprice);
+
+        }
     }
+    protected void  onSaveInstanceState(Bundle outState) {
+
+        outState.putFloat("price1",sumprice);//暂时保存在price1
+        super.onSaveInstanceState(outState);
+    }
+//    protected void onRestoreInstanceState(Bundle saveInstanceState) {
+//        super.onRestoreInstanceState(saveInstanceState);
+//        //Log.i(TAG, "sumprise: "+sumprice);
+//        sumprice=saveInstanceState.getFloat("price1");//取出保存的数据重新加载
+//        sumprice=sumprice+nowprice;
+//        Log.i(TAG, "sumprice: "+sumprice);
+//        TextView sum=findViewById(R.id.textView4);
+//        sum.setText("合计："+sumprice);
+//    }
 }
