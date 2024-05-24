@@ -21,12 +21,28 @@ public class goods extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods);
 
+        Intent intent=getIntent();
+        //把用户名取到
+        String username=intent.getStringExtra("username");
         Button button = (Button)findViewById(R.id.goorder);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(goods.this,OrderSuccess.class);
+                startActivity(intent);
+            }
+        });
+        Button button2 = (Button)findViewById(R.id.gocart);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(goods.this,Cart.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("username",username);
+                //再次把username传到cart页面和MyRecyclerAdapter
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -49,7 +65,7 @@ public class goods extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        Intent intent=getIntent();
+
         Log.i(TAG, "onCreate: "+intent.getFloatExtra("price",0f));
         nowprice=intent.getFloatExtra("price",0f);
         if (null != savedInstanceState) {
@@ -66,13 +82,4 @@ public class goods extends AppCompatActivity {
         outState.putFloat("price1",sumprice);//暂时保存在price1
         super.onSaveInstanceState(outState);
     }
-//    protected void onRestoreInstanceState(Bundle saveInstanceState) {
-//        super.onRestoreInstanceState(saveInstanceState);
-//        //Log.i(TAG, "sumprise: "+sumprice);
-//        sumprice=saveInstanceState.getFloat("price1");//取出保存的数据重新加载
-//        sumprice=sumprice+nowprice;
-//        Log.i(TAG, "sumprice: "+sumprice);
-//        TextView sum=findViewById(R.id.textView4);
-//        sum.setText("合计："+sumprice);
-//    }
 }

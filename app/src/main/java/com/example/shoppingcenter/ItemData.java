@@ -1,7 +1,7 @@
 package com.example.shoppingcenter;
 
 public class ItemData {
-    private String description;
+    private String description;//名字
     private int imgId;
     private float price;
 
