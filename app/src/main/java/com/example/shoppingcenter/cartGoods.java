@@ -10,12 +10,12 @@ public class cartGoods {
 
     public cartGoods(String username, String goods_name,float goods_price,int goods_img){
         super();
+
         this.username = username;
         this.goods_img = goods_img;
         this.goods_name=goods_name;
         this.goods_price=goods_price;
     }
-
 
     public String getUsername() {
         return username;

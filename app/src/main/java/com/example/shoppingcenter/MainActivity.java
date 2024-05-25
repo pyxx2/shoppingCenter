@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private MyDatabaseHelper mSQlite;
     public static String Name;
+    public static boolean add_delete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     if (userdata) {
                         Name=name;
                         Intent intent = new Intent();
+                        MainActivity.add_delete=true;//true为add
                         intent.setClass(MainActivity.this,goods.class);
                         startActivity(intent);
                         finish();

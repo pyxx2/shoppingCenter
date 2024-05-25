@@ -33,6 +33,7 @@ public class OrderSuccess extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                MainActivity.add_delete=true;//true为add
                 intent.setClass(OrderSuccess.this,goods.class);
                 startActivity(intent);
             }

@@ -56,6 +56,7 @@ public class Cart extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.add_delete=true;//true为add
                 Intent intent = new Intent();
                 intent.setClass(Cart.this,goods.class);
                 startActivity(intent);

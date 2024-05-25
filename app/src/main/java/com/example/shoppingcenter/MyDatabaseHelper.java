@@ -66,5 +66,15 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void deleteCart(String username){
         db.delete("usercart","username=?",new String[]{username});
     }
+    public boolean deleteItem(String username, String goods_name) {
+        // 构建删除条件，同时匹配用户名、商品名称和商品价格
+        String whereClause = "username=? AND goods_name=?";
+        // 将匹配条件的值放入字符串数组中
+        String[] whereArgs = new String[]{username, goods_name};
+        // 执行删除操作
+        db.delete("usercart", whereClause, whereArgs);
+        return true;
+    }
+
 }
 

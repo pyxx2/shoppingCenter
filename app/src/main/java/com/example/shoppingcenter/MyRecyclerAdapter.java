@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder>  {
 
     private ItemData[] listdata;
@@ -37,8 +39,6 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     private static final int REQUEST_CODE = 1;
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-
         final ItemData itemData = listdata[position];
         holder.textView.setText(itemData.getDescription());
         holder.imageView.setImageResource(itemData.getImgId());
@@ -46,21 +46,25 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //实例化
                 mSQlite=new MyDatabaseHelper(view.getContext());
-                //Toast.makeText(view.getContext(),"Click: "+ itemData.getPrice(),Toast.LENGTH_SHORT).show();
-                final float price=itemData.getPrice();
                 final String goods_name=itemData.getDescription();
                 final int goods_img=itemData.getImgId();
                 final float goods_price=itemData.getPrice();
-                //Log.i(TAG, "onClick: "+price);
-//                Intent intent = new Intent(view.getContext(),goods.class);
-//                String username = intent.getStringExtra("username");
-                Log.i(ContentValues.TAG, "adapter 收到  username : "+username);
-                mSQlite.add2(username,goods_name,goods_price,goods_img);
-                //将数据发送到intent中
-                //intent.putExtra("price",price);
-                //打开新窗口
-                //view.getContext().startActivity(intent);
+                if(MainActivity.add_delete){//add
+                    //Log.i(ContentValues.TAG, "adapter 收到  username : "+username);
+                    mSQlite.add2(username,goods_name,goods_price,goods_img);
+                }else {//delete
+                    //删除数据库里面的数据
+                    ArrayList<cartGoods> data = mSQlite.getCART();
+                    boolean flag=false;
+                    for (int i = 0; i < data.size(); i++) {
+                        if(flag==true)break;;
+                        flag=mSQlite.deleteItem(username,goods_name);
+                    }
+
+                }
+
             }
         });
     }
@@ -83,9 +87,4 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
             this.price=(TextView) itemView.findViewById(R.id.price);
         }
     }
-//    public void setData(String name){
-//        username=name;
-//        notifyDataSetChanged();
-//        Log.i(ContentValues.TAG, "adapter 收到  username : "+username);
-//    }
 }
