@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class MyDatabaseHelper extends SQLiteOpenHelper {
     private SQLiteDatabase db;
     public MyDatabaseHelper(Context context){
-        super(context,"db_test",null,9);
+        super(context,"db_test",null,10);
         db=getReadableDatabase();
     }
     public void onCreate(SQLiteDatabase db) {

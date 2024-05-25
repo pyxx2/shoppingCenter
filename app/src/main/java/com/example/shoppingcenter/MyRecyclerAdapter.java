@@ -20,6 +20,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
     private ItemData[] listdata;
     private MyDatabaseHelper mSQlite;
+    private String username;
     public MyRecyclerAdapter(ItemData[] listdata) {
         this.listdata = listdata;
     }
@@ -52,14 +53,14 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
                 final int goods_img=itemData.getImgId();
                 final float goods_price=itemData.getPrice();
                 //Log.i(TAG, "onClick: "+price);
-                Intent intent = new Intent(view.getContext(),goods.class);
-                String username = intent.getStringExtra("username");
-                Log.i(ContentValues.TAG, "adapter 收到  id : "+username);
+//                Intent intent = new Intent(view.getContext(),goods.class);
+//                String username = intent.getStringExtra("username");
+                Log.i(ContentValues.TAG, "adapter 收到  username : "+username);
                 mSQlite.add2(username,goods_name,goods_price,goods_img);
                 //将数据发送到intent中
                 //intent.putExtra("price",price);
                 //打开新窗口
-                view.getContext().startActivity(intent);
+                //view.getContext().startActivity(intent);
             }
         });
     }
@@ -81,5 +82,10 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
             this.relativeLayout = (RelativeLayout)itemView.findViewById(R.id.relativeLayout);
             this.price=(TextView) itemView.findViewById(R.id.price);
         }
+    }
+    public void setData(String name){
+        username=name;
+        notifyDataSetChanged();
+        Log.i(ContentValues.TAG, "adapter 收到  username : "+username);
     }
 }
