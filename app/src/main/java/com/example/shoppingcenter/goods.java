@@ -14,18 +14,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class goods extends AppCompatActivity {
-    Float sumprice=0f;
-    Float nowprice;
-    private String mdata;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods);
 
-
-        Intent intent=getIntent();
-        //把用户名取到
-        String username=intent.getStringExtra("username");
+        String username=MainActivity.Name;
         Log.i(TAG, "goods 收到  name : "+username);
 
         Button button = (Button)findViewById(R.id.goorder);
@@ -42,8 +36,6 @@ public class goods extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                //把username传到cart页面
-                intent.putExtra("username",username);
                 intent.setClass(goods.this,Cart.class);
                 startActivity(intent);
             }
@@ -66,25 +58,6 @@ public class goods extends AppCompatActivity {
         MyRecyclerAdapter adapter = new MyRecyclerAdapter(itemData);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        //把用户名传递过去
-        mdata=username;
-        adapter.setData(mdata);
 
-
-        //Log.i(TAG, "onCreate: "+intent.getFloatExtra("price",0f));
-        nowprice=intent.getFloatExtra("price",0f);
-        if (null != savedInstanceState) {
-            sumprice = savedInstanceState.getFloat("price1");
-            sumprice=sumprice+nowprice;
-            Log.i(TAG, "sumprice: "+sumprice);
-            TextView sum=findViewById(R.id.textView4);
-            sum.setText("合计："+sumprice);
-
-        }
-    }
-    protected void  onSaveInstanceState(Bundle outState) {
-
-        outState.putFloat("price1",sumprice);//暂时保存在price1
-        super.onSaveInstanceState(outState);
     }
 }

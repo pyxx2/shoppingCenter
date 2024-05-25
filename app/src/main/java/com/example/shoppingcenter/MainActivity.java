@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private MyDatabaseHelper mSQlite;
-
+    public static String Name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,10 +60,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     if (userdata) {
+                        Name=name;
                         Intent intent = new Intent();
                         intent.setClass(MainActivity.this,goods.class);
-                        //把用户名传到goods页面
-                        intent.putExtra("username",name);
                         startActivity(intent);
                         finish();
                     }else{

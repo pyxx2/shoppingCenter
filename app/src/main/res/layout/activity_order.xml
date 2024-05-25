@@ -5,12 +5,22 @@
     android:orientation="vertical">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:gravity="center"
+        android:text="已为您清空购物车"
+        android:textColor="#ff0000"
+        android:textSize="30dp" />
+
+    <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_gravity="center"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         android:textSize="50dp"
         android:textColor="#ff0000"
         android:text="下单成功!" />

@@ -62,5 +62,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
         return list;
     }
+
+    public void deleteCart(String username){
+        db.delete("usercart","username=?",new String[]{username});
+    }
 }
 

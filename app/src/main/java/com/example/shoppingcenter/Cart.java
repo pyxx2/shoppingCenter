@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -18,14 +19,13 @@ import java.util.Objects;
 public class Cart extends AppCompatActivity {
 
     private MyDatabaseHelper mSQlite;
+    float sum=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        Intent intent =getIntent();
-        //取出来用户名
-        String username=intent.getStringExtra("username");
+        String username=MainActivity.Name;
         ArrayList<ItemData> itemList = new ArrayList<>();
         mSQlite = new MyDatabaseHelper(this);
         ArrayList<cartGoods> data = mSQlite.getCART();
@@ -38,6 +38,7 @@ public class Cart extends AppCompatActivity {
                 float goods_price=goods.getGoods_price();
                 int goods_img=goods.getGoods_img();
                 itemList.add(new ItemData(goods_name,goods_img,goods_price));
+                sum+=goods_price;
             }
         }
         ItemData[] itemData = new ItemData[itemList.size()];
@@ -46,7 +47,10 @@ public class Cart extends AppCompatActivity {
         MyRecyclerAdapter adapter = new MyRecyclerAdapter(itemData);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        TextView summ=findViewById(R.id.summ);
+        summ.setText("合计："+sum);
 
+        //按钮功能
         Button back=(Button)findViewById(R.id.backGoods);
         Button takeOrder=(Button)findViewById(R.id.goorder2);
         back.setOnClickListener(new View.OnClickListener() {

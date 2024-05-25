@@ -20,7 +20,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
     private ItemData[] listdata;
     private MyDatabaseHelper mSQlite;
-    private String username;
+    private String username=MainActivity.Name;
     public MyRecyclerAdapter(ItemData[] listdata) {
         this.listdata = listdata;
     }
@@ -83,9 +83,9 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
             this.price=(TextView) itemView.findViewById(R.id.price);
         }
     }
-    public void setData(String name){
-        username=name;
-        notifyDataSetChanged();
-        Log.i(ContentValues.TAG, "adapter 收到  username : "+username);
-    }
+//    public void setData(String name){
+//        username=name;
+//        notifyDataSetChanged();
+//        Log.i(ContentValues.TAG, "adapter 收到  username : "+username);
+//    }
 }

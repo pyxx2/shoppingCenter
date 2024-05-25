@@ -25,15 +25,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="#ff0000"
-            android:textSize="30dp"
-            android:text="合计：" />
-
     </LinearLayout>
 
     <LinearLayout
