@@ -16,7 +16,7 @@ public class Cart extends AppCompatActivity {
 
         Intent intent = new Intent();
         //取出来用户名
-        String name=intent.getStringExtra("username");
+        String username=intent.getStringExtra("username");
         Button back=(Button)findViewById(R.id.backGoods);
         Button takeOrder=(Button)findViewById(R.id.goorder2);
         back.setOnClickListener(new View.OnClickListener() {

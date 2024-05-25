@@ -24,6 +24,7 @@ public class goods extends AppCompatActivity {
         Intent intent=getIntent();
         //把用户名取到
         String username=intent.getStringExtra("username");
+        Log.i(TAG, "goods 收到  name : "+username);
         Button button = (Button)findViewById(R.id.goorder);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +42,7 @@ public class goods extends AppCompatActivity {
                 intent.setClass(goods.this,Cart.class);
                 Bundle bundle=new Bundle();
                 bundle.putString("username",username);
+
                 //再次把username传到cart页面和MyRecyclerAdapter
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -66,7 +68,7 @@ public class goods extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-        Log.i(TAG, "onCreate: "+intent.getFloatExtra("price",0f));
+        //Log.i(TAG, "onCreate: "+intent.getFloatExtra("price",0f));
         nowprice=intent.getFloatExtra("price",0f);
         if (null != savedInstanceState) {
             sumprice = savedInstanceState.getFloat("price1");

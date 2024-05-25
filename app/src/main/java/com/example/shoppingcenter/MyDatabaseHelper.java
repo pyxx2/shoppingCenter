@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class MyDatabaseHelper extends SQLiteOpenHelper {
     private SQLiteDatabase db;
     public MyDatabaseHelper(Context context){
-        super(context,"db_test",null,1);
+        super(context,"db_test",null,9);
         db=getReadableDatabase();
     }
     public void onCreate(SQLiteDatabase db) {
@@ -23,7 +23,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 "password TEXT)");
         //用户的购物车表
         db.execSQL("CREATE TABLE IF NOT EXISTS usercart("+
-                "name INTEGER PRIMARY KEY,"+
+                "goods_id INTEGER PRIMARY KEY AUTOINCREMENT,"+"username TEXT,"+
                 "goods_name TEXT,"+"goods_price REAL,"+"goods_img INTEGER)");
     }
     @Override
@@ -35,8 +35,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void add(String name,String password ){
         db.execSQL("INSERT INTO user(name,password)VALUES(?,?)",new Object[]{name,password});
     }
-    public void add2(String name,String goods_name,float goods_price,int goods_img){
-        db.execSQL("INSERT INTO usercart(name,goods_name,goods_price,goods_img)VALUES(?,?,?,?)",new Object[]{name,goods_name,goods_price,goods_img});
+    public void add2(String username,String goods_name,float goods_price,int goods_img){
+        db.execSQL("INSERT INTO usercart(username,goods_name,goods_price,goods_img)VALUES(?,?,?,?)",new Object[]{username,goods_name,goods_price,goods_img});
     }
 
     public ArrayList<User> getAllDATA(){
@@ -52,13 +52,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     public ArrayList<cartGoods> getCART(){
         ArrayList<cartGoods> list = new ArrayList<cartGoods>();
-        Cursor cursor = db.query("user",null,null,null,null,null,null);
+        Cursor cursor = db.query("usercart",null,null,null,null,null,null);
         while(cursor.moveToNext()){
-            @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex("name"));
+            @SuppressLint("Range") String username = cursor.getString(cursor.getColumnIndex("username"));
             @SuppressLint("Range") String goods_name = cursor.getString(cursor.getColumnIndex("goods_name"));
             @SuppressLint("Range") float goods_price = cursor.getFloat(cursor.getColumnIndex("goods_price"));
             @SuppressLint("Range") int goods_img = cursor.getInt(cursor.getColumnIndex("goods_img"));
-            list.add(new cartGoods(name,goods_name,goods_price,goods_img));
+            list.add(new cartGoods(username,goods_name,goods_price,goods_img));
         }
         return list;
     }

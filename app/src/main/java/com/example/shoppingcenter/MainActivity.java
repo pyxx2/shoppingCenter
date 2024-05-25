@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //按钮的跳转功能
         Button button = (Button)findViewById(R.id.register);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int id=0;
                 EditText username=findViewById(R.id.userName);
                 EditText userpassword=findViewById(R.id.password);
                 String name = username.getText().toString().trim();
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "onClick: "+name);
                 Log.i(TAG, "onClick: "+password);
                 if (name.equals("") || password.equals("")) {
-                    Toast.makeText(MainActivity.this,"用户名或密码不能为空*****",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"用户名或密码不能为空",Toast.LENGTH_SHORT).show();
                 }else{
                     ArrayList<User> data = mSQlite.getAllDATA();
                     boolean userdata = false;
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         User user = data.get(i);   //可存储账号数量
                         if (name.equals(user.getName())) {
                             userdata = true;
+                            Log.i(TAG, "main  name : "+user.getName());
                             break;
                         } else {
                             userdata = false;

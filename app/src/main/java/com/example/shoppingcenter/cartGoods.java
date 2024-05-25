@@ -3,24 +3,26 @@ package com.example.shoppingcenter;
 import javax.xml.namespace.QName;
 
 public class cartGoods {
-    private String name;//本次登录用户名
+    private String username;//本次登录用户名
     private String goods_name;//商品名称
     private float goods_price;//商品价格
     private int goods_img;//商品图片
 
-    public cartGoods(String name, String goods_name,float goods_price,int goods_img){
+    public cartGoods(String username, String goods_name,float goods_price,int goods_img){
         super();
-        this.name = name;
+        this.username = username;
         this.goods_img = goods_img;
         this.goods_name=goods_name;
         this.goods_price=goods_price;
     }
-    public String getName() {
-        return name;
+
+
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getGoods_name() {

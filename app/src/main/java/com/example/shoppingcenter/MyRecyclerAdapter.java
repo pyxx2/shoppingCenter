@@ -1,6 +1,8 @@
 package com.example.shoppingcenter;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
+import android.content.ContentValues;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,6 +37,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+
         final ItemData itemData = listdata[position];
         holder.textView.setText(itemData.getDescription());
         holder.imageView.setImageResource(itemData.getImgId());
@@ -42,7 +45,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                mSQlite=new MyDatabaseHelper(view.getContext());
                 //Toast.makeText(view.getContext(),"Click: "+ itemData.getPrice(),Toast.LENGTH_SHORT).show();
                 final float price=itemData.getPrice();
                 final String goods_name=itemData.getDescription();
@@ -50,8 +53,9 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
                 final float goods_price=itemData.getPrice();
                 //Log.i(TAG, "onClick: "+price);
                 Intent intent = new Intent(view.getContext(),goods.class);
-                String name = intent.getStringExtra("username");
-                mSQlite.add2(name,goods_name,goods_price,goods_img);
+                String username = intent.getStringExtra("username");
+                Log.i(ContentValues.TAG, "adapter 收到  id : "+username);
+                mSQlite.add2(username,goods_name,goods_price,goods_img);
                 //将数据发送到intent中
                 //intent.putExtra("price",price);
                 //打开新窗口
