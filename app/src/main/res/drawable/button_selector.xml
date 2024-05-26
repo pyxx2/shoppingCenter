@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 当按钮被按下时使用的背景 -->
+    <item android:drawable="@color/green" android:state_pressed="true" />
+    <!-- 默认情况下使用的背景 -->
+    <item android:drawable="@color/red" />
+</selector>

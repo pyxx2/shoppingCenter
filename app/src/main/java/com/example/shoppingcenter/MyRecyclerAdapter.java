@@ -53,8 +53,16 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
                 final int goods_img=itemData.getImgId();
                 final float goods_price=itemData.getPrice();
                 if(MainActivity.add_delete){//add
-                    //Log.i(ContentValues.TAG, "adapter 收到  username : "+username);
+                    //数据库一定会增加记录
                     mSQlite.add2(username,goods_name,goods_price,goods_img);
+                    if(MainActivity.is_cart){//增加条目动画
+                        // 假设我们要在最后添加新条目
+                        int newPosition = listdata.length;
+                        // 创建一个新的ItemData对象
+                        ItemData newItem = new ItemData(goods_name, goods_img, goods_price);
+                        // 插入新条目
+                        insertItem(newPosition, newItem);
+                    }
                 }else {//delete
                     //删除数据库里面的数据
                      mSQlite.deleteSingleItem(username, goods_name);
@@ -88,7 +96,14 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, listdata.length);
     }
-
+    public void insertItem(int position, ItemData itemData) {
+        // 插入数据
+        ArrayList<ItemData> list = new ArrayList<>(Arrays.asList(listdata));
+        list.add(position, itemData);
+        listdata = list.toArray(new ItemData[0]);
+        // 通知适配器插入了条目
+        notifyItemInserted(position);
+    }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
         public TextView textView;

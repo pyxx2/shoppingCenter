@@ -37,6 +37,7 @@ public class goods extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 MainActivity.add_delete=false;//false为delete
+                MainActivity.is_cart=true;
                 intent.setClass(goods.this,Cart.class);
                 startActivity(intent);
             }

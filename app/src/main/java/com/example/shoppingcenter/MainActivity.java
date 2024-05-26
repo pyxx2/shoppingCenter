@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private MyDatabaseHelper mSQlite;
     public static String Name;
     public static boolean add_delete;
+    public static boolean is_cart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int id=0;
                 EditText username=findViewById(R.id.userName);
                 EditText userpassword=findViewById(R.id.password);
                 String name = username.getText().toString().trim();
@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         Name=name;
                         Intent intent = new Intent();
                         MainActivity.add_delete=true;//true为add
+                        MainActivity.is_cart=false;
                         intent.setClass(MainActivity.this,goods.class);
                         startActivity(intent);
                         finish();
