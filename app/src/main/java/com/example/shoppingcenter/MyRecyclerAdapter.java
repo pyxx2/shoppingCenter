@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder>  {
 
@@ -43,7 +44,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         holder.textView.setText(itemData.getDescription());
         holder.imageView.setImageResource(itemData.getImgId());
         holder.price.setText(String.valueOf(itemData.getPrice()));
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //实例化
@@ -56,22 +57,36 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
                     mSQlite.add2(username,goods_name,goods_price,goods_img);
                 }else {//delete
                     //删除数据库里面的数据
-                    ArrayList<cartGoods> data = mSQlite.getCART();
-                    boolean flag=false;
-                    for (int i = 0; i < data.size(); i++) {
-                        if(flag==true)break;;
-                        flag=mSQlite.deleteItem(username,goods_name);
-                    }
-
+                     mSQlite.deleteSingleItem(username, goods_name);
+                     holder.relativeLayout.animate()
+                            .alpha(0.0f)
+                            .setDuration(300)
+                            .withEndAction(new Runnable() {
+                                @Override
+                                public void run() {
+                                    // 动画完成后移除条目
+                                    removeItem(holder.getAdapterPosition());
+                                    Toast.makeText(view.getContext(), "已删除商品", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .start();
                 }
 
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return listdata.length;
+    }
+    public void removeItem(int position) {
+        // 删除数据
+        ArrayList<ItemData> list = new ArrayList<>(Arrays.asList(listdata));
+        list.remove(position);
+        listdata = list.toArray(new ItemData[0]);
+        // 通知适配器条目被删除
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, listdata.length);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -66,14 +66,19 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void deleteCart(String username){
         db.delete("usercart","username=?",new String[]{username});
     }
-    public boolean deleteItem(String username, String goods_name) {
-        // 构建删除条件，同时匹配用户名、商品名称和商品价格
-        String whereClause = "username=? AND goods_name=?";
-        // 将匹配条件的值放入字符串数组中
-        String[] whereArgs = new String[]{username, goods_name};
-        // 执行删除操作
-        db.delete("usercart", whereClause, whereArgs);
-        return true;
+    public void deleteSingleItem(String username, String goods_name) {
+        // 先查询获取符合条件的记录的goods_id
+        Cursor cursor = db.query("usercart", new String[]{"goods_id"}, "username=? AND goods_name=?", new String[]{username, goods_name}, null, null, null);
+        if (cursor.moveToFirst()) {
+            // 获取第一条记录的goods_id
+            @SuppressLint("Range") int goodsId = cursor.getInt(cursor.getColumnIndex("goods_id"));
+            // 使用goods_id删除记录
+            int rowsDeleted = db.delete("usercart", "goods_id=?", new String[]{Integer.toString(goodsId)});
+            cursor.close();
+            // 如果至少有一行被删除，则返回true，否则返回false
+        }
+        cursor.close();
+        // 如果没有记录匹配查询条件，则返回false
     }
 
 }
