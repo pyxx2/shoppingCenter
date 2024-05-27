@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/background"
     android:orientation="vertical"
     tools:context=".MainActivity" >
 
@@ -117,8 +118,10 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/round_corner"
                 android:gravity="center"
                 android:text="注册"
+                android:textColor="#ffffff"
                 android:textSize="30dp" />
 
             <Button
@@ -127,6 +130,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:background="@drawable/round_corner"
+                android:textColor="#ffffff"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center"

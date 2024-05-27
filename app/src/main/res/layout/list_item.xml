@@ -2,35 +2,32 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
-
     android:layout_height="?android:attr/listPreferredItemHeightLarge"
-    android:background="@drawable/border">
+    android:background="@mipmap/itemback">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
         android:contentDescription="Icon" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:foregroundGravity="center"
-
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="315dp"
-        android:gravity="center_vertical"
-        android:textSize="20sp" />
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@id/imageView"
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/price"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="55dp"
-        android:gravity="bottom|right"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="85dp"
+        android:layout_toRightOf="@id/textView"
         android:textColor="#ff0000"
-        android:textSize="35sp" />
+        android:textSize="28sp" />
 
 </RelativeLayout>

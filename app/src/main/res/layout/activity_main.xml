@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@mipmap/background"
     tools:context=".MainActivity" >
 
 
@@ -24,7 +25,7 @@
         android:layout_height="250dp"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:src="@drawable/touxiang" />
+        android:src="@drawable/back" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,22 +37,21 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="用户名："
-                android:layout_marginLeft="10dp"
-                android:textColor="#000000"
-                android:textSize="25sp" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="35dp"
+                android:src="@drawable/user" />
 
             <EditText
                 android:id="@+id/userName"
-                android:layout_width="267dp"
+                android:layout_width="268dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="35dp"
                 android:hint="请输入用户名"
+                android:inputType="textWebPassword"
                 android:textColor="#2196F3"
                 android:textSize="25sp" />
 
@@ -62,25 +62,24 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="密码:"
-                android:layout_marginLeft="10dp"
-                android:textColor="#000000"
-                android:textSize="25sp" />
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="35dp"
+                android:src="@drawable/pwd" />
 
             <EditText
                 android:id="@+id/password"
                 android:layout_width="268dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                android:hint="请输入密码"
+                android:layout_marginTop="35dp"
+                android:hint="请输入用户名"
                 android:inputType="textWebPassword"
                 android:textColor="#2196F3"
                 android:textSize="25sp" />
+
         </LinearLayout>
 
         <LinearLayout

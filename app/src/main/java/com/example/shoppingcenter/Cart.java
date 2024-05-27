@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -39,6 +40,11 @@ public class Cart extends AppCompatActivity {
         toolbarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(MainActivity.add_delete){
+                    Toast.makeText(Cart.this,"点击商品以删除",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(Cart.this,"点击商品以增加",Toast.LENGTH_SHORT).show();
+                }
                 // 切换add_delete的值
                 MainActivity.add_delete = !MainActivity.add_delete;
                 // 更新按钮的文本和颜色
@@ -100,7 +106,7 @@ public class Cart extends AppCompatActivity {
             button.setBackgroundColor(ContextCompat.getColor(this, R.color.green)); // 设置按钮颜色为绿色
         } else {
             button.setText("del");
-            button.setBackgroundColor(ContextCompat.getColor(this, R.color.red)); // 设置按钮颜色为红色
+            button.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow)); // 设置按钮颜色为红色
         }
     }
 }
